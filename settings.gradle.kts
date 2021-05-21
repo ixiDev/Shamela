@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "Shamela"
 include(":app")
 include(":common:data")
+include(":common:bokfilereader")
