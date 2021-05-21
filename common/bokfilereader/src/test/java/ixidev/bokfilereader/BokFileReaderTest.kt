@@ -6,6 +6,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
+/**
+ * Created by Abdelmajid ID ALI, on 21/05/2021
+ * Github : [https://github.com/ixiDev]
+ */
 @RunWith(Parameterized::class)
 class BokFileReaderTest(
     private val bookId: Int

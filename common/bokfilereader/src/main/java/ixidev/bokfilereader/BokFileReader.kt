@@ -7,7 +7,10 @@ import ixidev.bokfilereader.tables.MainTable
 import ixidev.bokfilereader.tables.TTable
 import java.io.File
 import java.nio.charset.Charset
-
+/**
+ * Created by Abdelmajid ID ALI, on 21/05/2021
+ * Github : [https://github.com/ixiDev]
+ */
 class BokFileReader(path: String) {
 
     private var _database: Database? = null
