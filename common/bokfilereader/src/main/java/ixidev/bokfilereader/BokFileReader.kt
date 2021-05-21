@@ -1,6 +1,5 @@
 package ixidev.bokfilereader
 
-import androidx.annotation.VisibleForTesting
 import com.healthmarketscience.jackcess.Database
 import com.healthmarketscience.jackcess.DatabaseBuilder
 import ixidev.bokfilereader.tables.BTable
