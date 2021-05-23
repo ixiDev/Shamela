@@ -1,25 +1,32 @@
 package ixidev.bokfilereader
 
+import android.os.FileUtils
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import java.io.File
+import java.io.FileOutputStream
 
 /**
  * Created by Abdelmajid ID ALI, on 21/05/2021
  * Github : [https://github.com/ixiDev]
  */
-@RunWith(Parameterized::class)
-class BokFileReaderTest(
-    private val bookId: Int
-) {
+@RunWith(AndroidJUnit4::class)
+class BokFileReaderInstrumentTest {
 
+    private val bookId: Int = 151016
     lateinit var reader: BokFileReader
 
     @Before
     fun readFile() {
-        reader = BokFileReader("src/test/assets/$bookId.bok")
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val out = File(appContext.cacheDir, "$bookId.bok")
+        FileUtils.copy(appContext.assets.open("$bookId.bok"), FileOutputStream(out))
+        reader = BokFileReader(out.path)
     }
 
     @Test
@@ -46,7 +53,7 @@ class BokFileReaderTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters(name = "{index}: {0}")
-        fun createTestData() = arrayOf(151045, 151100, 151007,151016)
+        fun createTestData() = arrayOf(151045, 151100, 151007, 151016)
     }
 
 }

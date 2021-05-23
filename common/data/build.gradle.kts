@@ -33,6 +33,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/*.kotlin_module")
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/licenses/**")
+    }
 }
 
 dependencies {
@@ -44,4 +51,30 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     implementation(project(path = ":common:bokfilereader"))
+
+    implementation("io.ktor:ktor-client-android:1.2.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
+    // Ktor JVM(necessary for logging extension)
+    implementation("io.ktor:ktor-client-logging-jvm:1.2.5")
+    // Ktor Logging extension
+    implementation("io.ktor:ktor-client-logging:1.2.5")
+    // Necessary to show logs in logcat
+    implementation("ch.qos.logback:logback-classic:1.2.3")
+//    implementation("com.github.junrar:junrar:7.2.0")
+//    implementation("com.hzy:un7zip:1.6.0")
+//    implementation("com.github.seven332.a7zip:extract:cba0ce9586")
+//    implementation("org.apache.commons:commons-compress:1.20")
+//    implementation("net.sf.sevenzipjbinding:sevenzipjbinding:16.02-2.01")
+//    implementation("net.sf.sevenzipjbinding:sevenzipjbinding-all-platforms:16.02-2.01")
+
+    implementation("com.github.omicronapps:7-Zip-JBinding-4Android:Release-16.02-2.02")
+    val work_version = "2.5.0"
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+    // optional - Test helpers
+    androidTestImplementation("androidx.work:work-testing:$work_version")
+    implementation("androidx.work:work-multiprocess:$work_version")
+
 }
