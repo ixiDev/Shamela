@@ -41,11 +41,7 @@ jobs:
             ${{ runner.os }}-gradle-
             
       - name: Unit tests
-        uses: ReactiveCircus/android-emulator-runner@v2.16.0
-        with:
-           api-level: 29
-           arch: x86_64
-           script: ./gradlew test
+        run: ./gradlew test
        
       - name : Instrumented Tests
         uses: ReactiveCircus/android-emulator-runner@v2.16.0
