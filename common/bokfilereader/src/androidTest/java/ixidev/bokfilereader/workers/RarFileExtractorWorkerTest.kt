@@ -1,9 +1,10 @@
-package ixidev.workers
+package ixidev.bokfilereader.workers
 
 import android.content.Context
 import android.os.FileUtils
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.work.ListenableWorker
 import androidx.work.testing.TestListenableWorkerBuilder
 import ixidev.bokfilereader.workers.RarFileExtractorWorker

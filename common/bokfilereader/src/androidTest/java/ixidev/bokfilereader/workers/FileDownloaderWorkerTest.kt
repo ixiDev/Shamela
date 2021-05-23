@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package ixidev.workers
+package ixidev.bokfilereader.workers
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
