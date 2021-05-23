@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Android CI
+name: build
 
 on:
   push:
@@ -42,25 +42,3 @@ jobs:
         
       - name: Gradle build
         run: ./gradlew build
-  
-  test:
-    name: Test
-    needs: build
-    runs-on: ubuntu-20.04
-    steps:
-     
-     - name: Unit tests
-       uses: ReactiveCircus/android-emulator-runner@v2.16.0
-       with:
-          api-level: 30
-          script: ./gradlew test
-       
-     - name : Instrumented Tests
-       uses: ReactiveCircus/android-emulator-runner@v2.16.0
-       with:
-        api-level: 29
-        script: ./gradlew connectedCheck
-  
-  
-  
-  
