@@ -1,13 +1,18 @@
 package ixidev.bokfilereader.tables
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /**
  * Created by Abdelmajid ID ALI, on 21/05/2021
  * Github : [https://github.com/ixiDev]
  */
+@Entity
 data class MainTable(
     /**
      * Id
      */
+    @PrimaryKey
     val BkId: Int? = null,
     /**
      * Title

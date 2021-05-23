@@ -1,13 +1,13 @@
-package ixidev.shamela.data.workers
+package ixidev.workers
 
 import android.content.Context
-import android.graphics.text.LineBreaker
 import android.os.FileUtils
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.work.ListenableWorker
 import androidx.work.testing.TestListenableWorkerBuilder
+import ixidev.bokfilereader.workers.RarFileExtractorWorker
+import ixidev.bokfilereader.workers.getBokFilePath
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before

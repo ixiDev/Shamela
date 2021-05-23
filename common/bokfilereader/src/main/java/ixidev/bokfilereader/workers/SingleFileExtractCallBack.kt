@@ -1,4 +1,4 @@
-package ixidev.shamela.data.workers
+package ixidev.bokfilereader.workers
 
 import net.sf.sevenzipjbinding.ISequentialOutStream
 import net.sf.sevenzipjbinding.SevenZipException

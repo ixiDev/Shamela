@@ -1,10 +1,13 @@
-package ixidev.shamela.data.workers
+package ixidev.workers
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.work.ListenableWorker
 import androidx.work.testing.TestListenableWorkerBuilder
+import ixidev.bokfilereader.workers.FileDownloaderWorker
+import ixidev.bokfilereader.workers.ParseBokFileWorker
+import ixidev.bokfilereader.workers.RarFileExtractorWorker
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
