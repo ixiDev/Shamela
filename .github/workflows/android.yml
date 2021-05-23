@@ -53,12 +53,14 @@ jobs:
        uses: ReactiveCircus/android-emulator-runner@v2.16.0
        with:
           api-level: 30
+          arch: x86_64
           script: ./gradlew test
        
      - name : Instrumented Tests
        uses: ReactiveCircus/android-emulator-runner@v2.16.0
        with:
-        api-level: 29
+        api-level: 30
+        arch: x86_64
         script: ./gradlew connectedCheck
   
   
