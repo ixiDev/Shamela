@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package ixidev.workers
 
 import android.content.Context
@@ -17,6 +19,7 @@ import java.io.File
  * Created by Abdelmajid ID ALI, on 22/05/2021
  * Github : [https://github.com/ixiDev]
  */
+@Suppress("unused")
 private const val TAG = "FileDownloaderWorkerTes"
 
 @RunWith(AndroidJUnit4::class)

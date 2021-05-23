@@ -5,8 +5,6 @@ import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import net.sf.sevenzipjbinding.IInArchive
 import net.sf.sevenzipjbinding.SevenZip
 import net.sf.sevenzipjbinding.impl.RandomAccessFileInStream
@@ -36,24 +34,23 @@ class RarFileExtractorWorker(appContext: Context, params: WorkerParameters) :
 
     }
 
-    private suspend fun extractFile(rarFile: File, folder: File): File =
-        withContext(Dispatchers.IO) {
-            val randomAccessFile = RandomAccessFile(rarFile, "r")
-            val inStream = RandomAccessFileInStream(randomAccessFile)
-            val inArchive: IInArchive = SevenZip.openInArchive(null, inStream)
-            val fileName = "${rarFile.nameWithoutExtension}.bok"
-            val bokFile = File(folder, fileName)
-            inArchive.extractSlow(
-                0, SingleFileExtractCallBack(
-                    FileOutputStream(
-                        bokFile
-                    )
+    private fun extractFile(rarFile: File, folder: File): File {
+        val randomAccessFile = RandomAccessFile(rarFile, "r")
+        val inStream = RandomAccessFileInStream(randomAccessFile)
+        val inArchive: IInArchive = SevenZip.openInArchive(null, inStream)
+        val fileName = "${rarFile.nameWithoutExtension}.bok"
+        val bokFile = File(folder, fileName)
+        inArchive.extractSlow(
+            0, SingleFileExtractCallBack(
+                FileOutputStream(
+                    bokFile
                 )
             )
-            inArchive.close()
-            inStream.close()
-            bokFile
-        }
+        )
+        inArchive.close()
+        inStream.close()
+        return bokFile
+    }
 
     companion object {
 

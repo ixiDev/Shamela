@@ -15,7 +15,7 @@ class BokFileReaderTest(
     private val bookId: Int
 ) {
 
-    lateinit var reader: BokFileReader
+    private lateinit var reader: BokFileReader
 
     @Before
     fun readFile() {

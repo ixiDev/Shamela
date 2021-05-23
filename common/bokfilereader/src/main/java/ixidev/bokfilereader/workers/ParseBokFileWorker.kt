@@ -33,6 +33,7 @@ class ParseBokFileWorker(appContext: Context, params: WorkerParameters) :
 
 
     companion object {
+        @Suppress("unused")
         fun createInputData(bokFilePath: String) = workDataOf(
             "bok_file" to bokFilePath
         )

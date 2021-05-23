@@ -20,6 +20,7 @@ import java.io.OutputStream
  * Created by Abdelmajid ID ALI, on 22/05/2021
  * Github : [https://github.com/ixiDev]
  */
+@Suppress("BlockingMethodInNonBlockingContext")
 class FileDownloaderWorker(
     appContext: Context,
     private val params: WorkerParameters,
@@ -82,7 +83,8 @@ class FileDownloaderWorker(
         }
     }
 
-    suspend fun HttpClient.downloadFile(file: OutputStream, fileUrl: String): Int {
+    @Suppress("BlockingMethodInNonBlockingContext")
+    private suspend fun HttpClient.downloadFile(file: OutputStream, fileUrl: String): Int {
         return withContext(Dispatchers.IO) {
             try {
 

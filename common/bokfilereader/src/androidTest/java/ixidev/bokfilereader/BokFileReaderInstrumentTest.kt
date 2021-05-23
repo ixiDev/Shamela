@@ -19,7 +19,7 @@ import java.io.FileOutputStream
 class BokFileReaderInstrumentTest {
 
     private val bookId: Int = 151016
-    lateinit var reader: BokFileReader
+    private lateinit var reader: BokFileReader
 
     @Before
     fun readFile() {

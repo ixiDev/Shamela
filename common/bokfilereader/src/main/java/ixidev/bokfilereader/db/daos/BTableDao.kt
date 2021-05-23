@@ -3,7 +3,6 @@ package ixidev.bokfilereader.db.daos
 import androidx.room.Dao
 import androidx.room.Query
 import ixidev.bokfilereader.tables.BTable
-import ixidev.bokfilereader.tables.MainTable
 
 /**
  * Created by Abdelmajid ID ALI, on 23/05/2021
