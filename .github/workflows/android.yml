@@ -48,20 +48,27 @@ jobs:
     needs: build
     runs-on: ubuntu-20.04
     steps:
-     
-     - name: Unit tests
-       uses: ReactiveCircus/android-emulator-runner@v2.16.0
-       with:
-          api-level: 30
-          arch: x86_64
-          script: ./gradlew test
+    
+      - name: Cache Android SDK
+        uses: actions/cache@v2.1.4
+        with:
+          path: |
+           /usr/local/lib/android/*
+          key: ${{ runner.os }}-android-sdk-${{ hashFiles('/usr/local/lib/android/*') }}
+          restore-keys: |
+            ${{ runner.os }}-android-sdk-
+            
+      - name: Unit tests
+        uses: ReactiveCircus/android-emulator-runner@v2.16.0
+        with:
+           api-level: 29
+           script: ./gradlew test
        
-     - name : Instrumented Tests
-       uses: ReactiveCircus/android-emulator-runner@v2.16.0
-       with:
-        api-level: 30
-        arch: x86_64
-        script: ./gradlew connectedCheck
+      - name : Instrumented Tests
+        uses: ReactiveCircus/android-emulator-runner@v2.16.0
+        with:
+         api-level: 29
+         script: ./gradlew connectedCheck
   
   
   
