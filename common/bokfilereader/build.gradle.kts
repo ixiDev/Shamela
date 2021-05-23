@@ -40,6 +40,10 @@ android {
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/licenses/**")
     }
+    lint {
+        this.disable("DuplicatePlatformClasses")
+    }
+
 }
 
 dependencies {
@@ -50,9 +54,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-    implementation("com.healthmarketscience.jackcess:jackcess:4.0.0"){
-        exclude("commons-logging","commons-logging")
-    }
+    implementation("com.healthmarketscience.jackcess:jackcess:4.0.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
