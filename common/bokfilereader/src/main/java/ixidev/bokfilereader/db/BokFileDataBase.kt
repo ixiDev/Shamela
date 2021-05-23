@@ -17,7 +17,8 @@ import ixidev.bokfilereader.tables.TTable
  */
 @Database(
     entities = [MainTable::class, BTable::class, TTable::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class BokFileDataBase : RoomDatabase() {
 
