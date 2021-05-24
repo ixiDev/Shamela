@@ -2,7 +2,6 @@ package ixidev.bokfilereader.db.daos
 
 import androidx.room.Dao
 import androidx.room.Query
-import ixidev.bokfilereader.entities.BookPage
 import ixidev.bokfilereader.entities.BookSummary
 
 /**
