@@ -3,7 +3,6 @@ package ixidev.bokfilereader.db.daos
 import androidx.room.Dao
 import androidx.room.Query
 import ixidev.bokfilereader.entities.BookPage
-import ixidev.bokfilereader.tables.TTable
 
 /**
  * Created by Abdelmajid ID ALI, on 24/05/2021
