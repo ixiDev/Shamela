@@ -1,4 +1,4 @@
-package ixidev.shamela.data.entities
+package ixidev.bokfilereader.entities
 
 /**
  * Created by Abdelmajid ID ALI, on 24/05/2021
