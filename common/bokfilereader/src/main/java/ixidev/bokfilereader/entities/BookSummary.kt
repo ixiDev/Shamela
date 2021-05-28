@@ -11,8 +11,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "summary")
 data class BookSummary(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val page: Int,
     val parent: Int,
+    val level: Int,
     val title: String
 )

@@ -7,6 +7,7 @@ import ixidev.bokfilereader.tables.MainTable
 import ixidev.bokfilereader.tables.TTable
 import java.io.File
 import java.nio.charset.Charset
+
 /**
  * Created by Abdelmajid ID ALI, on 21/05/2021
  * Github : [https://github.com/ixiDev]
@@ -42,8 +43,9 @@ class BokFileReader(path: String) {
             .getTable(bTableName)
             ?: error("${database.file.name} not contains table with Name '$bTableName' ")
         val map = table.iterator().asSequence().map { row ->
+            val id = row["id"].toString().toIntOrNull() ?: 0
             TTable(
-                id = row["id"].toString().toIntOrNull(),
+                id = if (id > 0) id else -id,
                 tit = row.getString("tit"),
                 lvl = row["lvl"].toString().toIntOrNull(),
                 sub = row["sub"].toString().toIntOrNull()

@@ -2,6 +2,7 @@ package ixidev.bokfilereader.db.daos
 
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
 /**
@@ -10,10 +11,10 @@ import androidx.room.Update
  */
 interface BokFileBaseDao<Entity : Any> {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(item: Entity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(vararg item: Entity): List<Long>
 
     @Update

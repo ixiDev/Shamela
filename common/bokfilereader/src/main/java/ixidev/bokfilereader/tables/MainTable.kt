@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
  * Created by Abdelmajid ID ALI, on 21/05/2021
  * Github : [https://github.com/ixiDev]
  */
-@Entity
+@Entity(tableName = "book_main")
 data class MainTable(
     /**
      * Id

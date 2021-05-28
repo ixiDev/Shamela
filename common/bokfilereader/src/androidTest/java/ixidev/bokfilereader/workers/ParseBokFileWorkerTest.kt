@@ -5,6 +5,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.work.ListenableWorker
 import androidx.work.testing.TestListenableWorkerBuilder
+import ixidev.bokfilereader.BokFile
+import ixidev.bokfilereader.db.BokFileDataBase
 import ixidev.bokfilereader.workers.FileDownloaderWorker
 import ixidev.bokfilereader.workers.ParseBokFileWorker
 import ixidev.bokfilereader.workers.RarFileExtractorWorker
@@ -20,16 +22,21 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ParseBokFileWorkerTest {
     private lateinit var context: Context
+    private lateinit var databse: BokFileDataBase
+    private val bookId = 11055
 
     @Before
     fun initContext() {
         context = ApplicationProvider.getApplicationContext()
+        context.deleteDatabase("$bookId")
+        databse = BokFileDataBase.create(context, bookId)
+        databse.clearAllTables()
     }
 
     @Test
     fun parseBokFile() = runBlocking {
-        val bookId = 151100
-        val url = "https://shamela.ws/books/1511/$bookId.rar"
+
+        val url = "https://shamela.ws/books/110/$bookId.rar"
 
 
         val input = FileDownloaderWorker.createInputs("$bookId.rar", url)
@@ -48,6 +55,7 @@ class ParseBokFileWorkerTest {
         assert(extractFileResult is ListenableWorker.Result.Success)
 
         val parseBokFileWorker = TestListenableWorkerBuilder<ParseBokFileWorker>(context)
+            .setWorkerFactory(ParseBokFileWorker.Factory(databse))
             .setInputData((extractFileResult as ListenableWorker.Result.Success).outputData)
             .build()
 

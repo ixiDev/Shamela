@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "pages")
 data class BookPage(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val page: Int,
     val part: Int,
     val content: String
