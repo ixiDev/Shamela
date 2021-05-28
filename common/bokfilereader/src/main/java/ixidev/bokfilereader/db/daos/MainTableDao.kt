@@ -1,17 +1,16 @@
 package ixidev.bokfilereader.db.daos
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
 import ixidev.bokfilereader.tables.MainTable
 
 /**
- * Created by Abdelmajid ID ALI, on 23/05/2021
+ * Created by Abdelmajid ID ALI, on 28/05/2021
  * Github : [https://github.com/ixiDev]
  */
-
 @Dao
 interface MainTableDao : BokFileBaseDao<MainTable> {
 
-    @Query("SELECT * FROM maintable WHERE BkId=:id LIMIT 1")
-    suspend  fun getItemById(id: Int): MainTable
-
+    @Query("SELECT * FROM book_main WHERE BkId=:id LIMIT 1")
+    suspend fun getItemById(id: Int): MainTable
 }

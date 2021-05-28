@@ -2,8 +2,8 @@ package ixidev.bokfilereader.db
 
 import android.content.Context
 import android.os.FileUtils
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import ixidev.bokfilereader.BokFile
 import ixidev.bokfilereader.BokFileReader
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -11,6 +11,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -20,13 +21,15 @@ import java.io.IOException
  * Github : [https://github.com/ixiDev]
  */
 
-@RunWith(AndroidJUnit4::class)
-class BokFileDataBaseTest {
+@RunWith(Parameterized::class)
+class BokFileDataBaseTest(
+    private val bookId: Int
+) {
 
     private lateinit var context: Context
-    private val bookId: Int = 151007
     private lateinit var db: BokFileDataBase
-    private lateinit var reader: BokFileReader
+    private lateinit var repository: BokFileRepository
+    private lateinit var bokFile: BokFile
 
     @Before
     fun createDatabase() {
@@ -35,32 +38,34 @@ class BokFileDataBaseTest {
         db = BokFileDataBase.create(context, bookId)
         val out = File(context.cacheDir, "$bookId.bok")
         FileUtils.copy(context.assets.open("$bookId.bok"), FileOutputStream(out))
-        reader = BokFileReader(out.path)
         db.clearAllTables()
+        val reader = BokFileReader(out.path)
+        bokFile = reader.getBokFile()
+        repository = BokFileRepository(db)
     }
 
     @Test
     fun test_insert_bok_file() = runBlocking {
-        val bokFile = reader.getBokFile()
-        db.mainTableDao().insert(bokFile.main)
+        val id = repository.insertBookMain(bokFile.main)
         val itemById = db.mainTableDao().getItemById(bokFile.main.BkId!!)
-        assert(itemById == bokFile.main)
+        assertEquals(itemById, bokFile.main)
+        assertEquals(bokFile.main.BkId!!, id.toInt())
     }
 
 
     @Test
     fun test_insert_ttable_items() = runBlocking {
-        val tTableElements = reader.getBokFile().tElements
-        val ids = db.tTableDao().insert(*tTableElements.toTypedArray())
-        assertEquals(tTableElements.size, ids.size)
+        val tElements = bokFile.tElements
+        val size = repository.insertBookSummary(tElements)
+        assertEquals(tElements.size, size)
 
     }
 
     @Test
     fun test_insert_btable_items() = runBlocking {
-        val bTableElements = reader.getBokFile().bElements
-        val ids = db.bTableDao().insert(*bTableElements.toTypedArray())
-        assertEquals(bTableElements.size, ids.size)
+        val bElements = bokFile.bElements
+        val size = repository.insertBookPages(bElements)
+        assertEquals(bElements.size, size)
     }
 
     @After
@@ -69,5 +74,10 @@ class BokFileDataBaseTest {
         db.close()
     }
 
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters(name = "{index}: {0}")
+        fun createTestData() = arrayOf(151045, 151100, 151007, 151016, 11055)
+    }
 
 }
