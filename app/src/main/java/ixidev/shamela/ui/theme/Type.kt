@@ -1,18 +1,25 @@
 package ixidev.shamela.ui.theme
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import ixidev.shamela.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = FontFamily(Font(resId = R.font.al_jazeera_regular)),
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
-    )
+        fontSize = 16.sp,
+        color = ShamelaSecondaryColor
+    ),
+    defaultFontFamily = FontFamily(Font(resId = R.font.al_jazeera_regular)),
+
+
     /* Other default text styles to override
     button = TextStyle(
         fontFamily = FontFamily.Default,
