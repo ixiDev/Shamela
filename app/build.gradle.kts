@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 android {
     compileSdk = 30
@@ -67,4 +71,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
     implementation(project(path = ":common:data"))
+    implementation("com.google.dagger:hilt-android:${rootProject.extra["hilt_version"]}")
+    kapt("com.google.dagger:hilt-android-compiler:${rootProject.extra["hilt_version"]}")
+
 }
