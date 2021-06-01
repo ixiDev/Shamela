@@ -71,7 +71,22 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
     implementation(project(path = ":common:data"))
+
     implementation("com.google.dagger:hilt-android:${rootProject.extra["hilt_version"]}")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0")
     kapt("com.google.dagger:hilt-android-compiler:${rootProject.extra["hilt_version"]}")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+
+
+    val work_version = "2.5.0"
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+    androidTestImplementation("androidx.work:work-testing:$work_version")
+    implementation("androidx.work:work-multiprocess:$work_version")
+
+    val room_version = "2.3.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    testImplementation("androidx.room:room-testing:$room_version")
 
 }
