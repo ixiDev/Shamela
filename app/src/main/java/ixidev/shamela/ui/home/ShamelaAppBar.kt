@@ -60,7 +60,7 @@ fun ShamelaTopAppBar() {
                     .size(30.dp)
                     .padding(start = 5.dp)
                     .clickable(enabled = true, role = Role.Button) {
-                        //
+                        // TODO: Settings
                     }
                     .align(Alignment.CenterStart),
                 tint = MaterialTheme.colors.secondary

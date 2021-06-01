@@ -24,4 +24,7 @@ interface BookInfoDao {
     @Query("SELECT * from book")
     fun getAllBooks(): Flow<List<BookInfo>>
 
+    @Query("SELECT * FROM book WHERE category=:categoryId")
+    fun getByCategory(categoryId: Int): Flow<List<BookInfo>>
+
 }

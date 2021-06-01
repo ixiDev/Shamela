@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ixidev.shamela.data.ShamelaRepository
 import ixidev.shamela.data.db.BookInfoDao
 import ixidev.shamela.data.db.BooksDataBase
 
@@ -28,6 +29,10 @@ object DataModule {
         return dataBase.bookInfoDao()
     }
 
+    @Provides
+    fun provideShamelaRepository(dataBase: BooksDataBase): ShamelaRepository {
+        return ShamelaRepository(dataBase)
+    }
 
 
 }

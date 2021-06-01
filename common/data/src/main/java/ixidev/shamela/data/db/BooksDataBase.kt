@@ -22,6 +22,7 @@ abstract class BooksDataBase : RoomDatabase() {
     abstract fun bookInfoDao(): BookInfoDao
     abstract fun authorDao(): AuthorDao
     abstract fun categoryDao(): CategoryDao
+    abstract fun shamelaDao(): ShamelaDao
 
     companion object {
 
