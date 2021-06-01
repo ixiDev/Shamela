@@ -21,9 +21,9 @@ abstract class BooksDataBase : RoomDatabase() {
             return Room.databaseBuilder(
                 context.applicationContext,
                 BooksDataBase::class.java,
-                "books.db"
+                "shameladb.db"
             ).createFromAsset(
-                "books.db"
+                "shameladb.db"
             ).build()
         }
     }
