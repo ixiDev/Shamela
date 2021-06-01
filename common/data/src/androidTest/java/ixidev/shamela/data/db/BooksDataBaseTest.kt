@@ -25,8 +25,20 @@ class BooksDataBaseTest {
 
     @Test
     fun get_book_by_id(): Unit = runBlocking {
-        val book = dataBase.bookInfoDao().getBookById(1)
-        assertEquals(book.name, "الفواكه العذاب في الرد على من لم يحكم السنة والكتاب")
+        val item = dataBase.bookInfoDao().getBookById(1)
+        assertEquals(item.name, "الفواكه العذاب في الرد على من لم يحكم السنة والكتاب")
+    }
+
+    @Test
+    fun get_category_by_id(): Unit = runBlocking {
+        val item = dataBase.categoryDao().getById(1)
+        assertEquals(item.name, "العقيدة")
+    }
+
+    @Test
+    fun get_author_by_id(): Unit = runBlocking {
+        val item = dataBase.authorDao().getById(1)
+        assertEquals(item.name, "الواحدي")
     }
 
 }
