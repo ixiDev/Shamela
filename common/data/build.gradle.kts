@@ -16,6 +16,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf("room.schemaLocation" to "$projectDir/schemas")
+            }
+        }
     }
 
     buildTypes {
@@ -62,4 +67,9 @@ dependencies {
     androidTestImplementation("androidx.work:work-testing:$work_version")
     implementation("androidx.work:work-multiprocess:$work_version")
 
+    val room_version = "2.3.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    testImplementation("androidx.room:room-testing:$room_version")
 }
